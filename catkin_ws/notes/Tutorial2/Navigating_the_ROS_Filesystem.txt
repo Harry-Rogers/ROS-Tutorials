@@ -1,0 +1,16 @@
+sudo apt-get install ros-kinetic-ros-tutorials
+
+Packages: Software organisation unit of ROS code. Each package has libraries,
+exe, scripts or other artifacts.
+
+Manifests: Description of package defines dependencies between packages and to
+capture meta information about package like version, maintainer liscence etc.
+
+rospack can find packages instead of using ls and cd to find them. 
+Find does not work so rospack is only option.
+
+roscd will goto package so roscd rospy will go to rospy dir and will go 
+deep if needed ie roscd roscpp/cmake. 
+roscd log will find stored ros files if none ran before will print error.
+
+rosls will ls into dir will also go deep.
