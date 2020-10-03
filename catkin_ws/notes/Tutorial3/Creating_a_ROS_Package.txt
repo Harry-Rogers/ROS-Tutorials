@@ -1,0 +1,30 @@
+Catkin packages must meet these requirements:
+catkin compliant package.xml file provides meta info about package.
+CMakeLists.txt which using catkin 
+Each package must have its own folder so no packages in same dir.
+
+Structs for above can be found on ros wiki if needed.
+http://wiki.ros.org/catkin/package.xml
+http://wiki.ros.org/catkin/CMakeLists.txt
+
+Whole dir should look like
+Mypackage/
+	CMakeLists.txt
+	package.xml
+
+catkin_create_pkg beginner_tutorials std_msgs rospy roscpp
+makes a beginner tutorials folder containing package.xml and CMakeLists.txt
+filled out wtih info ie std_msgs rospy and roscpp
+
+Need to catkin_make again in ws dir
+
+First-order dependencies can be found using rospack depends1 begginer_tutorials
+can also see these in the package.xml file.
+
+Indirect dependencies can be found also by using rospack depends1 rospy.
+rospy has dependencies like many packages.
+
+calling rospack depends begginer_tutorials shows all dependencies in the dir.
+
+Edited the packages.xml file added name and email and title. Deleted comments
+for clarity.
