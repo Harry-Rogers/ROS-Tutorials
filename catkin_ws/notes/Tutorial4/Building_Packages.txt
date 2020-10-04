@@ -1,0 +1,8 @@
+source /opt/ros/kinetic/setup.bash
+
+sources the bash file
+nkdir catkin_ws
+cd catkin_ws
+catkin_make 
+
+creates a workspace making build devel src dirs
