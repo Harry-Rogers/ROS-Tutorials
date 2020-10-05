@@ -1,0 +1,35 @@
+Nodes: exectuable that uses ROS to communicate with other nodes
+MEssages: ROS data type for subscribing or publishing to topic.
+Topics: Nodes can publish messages to a topic as well as sub to recieve msgs.
+Master: Name service for ROS (helps nodes find each other)
+rosout: ROS eqiv to stdout (print)
+roscore: master + rosout + param
+
+Nodes are just exe files in ROS package.
+
+Client libraries allow nodes to communicate like rospy and roscpp even tho
+they are different languages.
+
+roscore then rosnode list
+
+rosnode shows info about the nodes that are running since we onlt have roscore
+on it shows the core service rosout.
+
+using rosnode info /rosout prints
+node publications, subscirptions and services and other info.
+
+running rosrun turtlesim turtlesim_node creates a turtle simulator
+this can be found using rosnode list whilst also having roscore still on
+prints
+/rosout
+/turtlesim
+
+can rename turtlesim but has to be from fresh call so ctrl c open one and call
+rosrun turtlesim turtlesim_node __name:=my_turtle
+
+if nodes that have been closed are still shows on rosnode list
+call rosnode cleanup
+
+rosnode ping my_turtle
+pings tutle to see if its alive
+
