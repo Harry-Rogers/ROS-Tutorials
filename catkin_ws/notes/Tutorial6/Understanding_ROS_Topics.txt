@@ -1,0 +1,64 @@
+roscore
+rosrun turtlesim turtlesim_node
+rosrun turtlesim turtle_teleop_key
+
+can now drive turtle around
+call
+rostun rqt_graph rqt_graph
+shows the current subscribers and publishers
+telop_turtle publishes using cmd_vel to turtlesim
+
+rostopic list
+shows the list of topics that are live
+rostopic echo /tutle1/cmd_vel
+then goto terminal with teleop open and drive
+when driving rostopic will show below but with vals dependent on movement
+linear:
+x:0
+y:0
+z:0
+Angular:
+x:0
+y:0
+z:0
+
+Looking back at rqt graph as there is a rostopic now subscribing to teleop
+teleop publishes to turtlesim and rostopic made.
+
+rostopic list -v
+shows the list with how many publishers and subscribers
+
+rostopic type /turtle1/cmd_vel
+prints
+geomtry_msgs/Twist
+
+rosmsg show gemotry_msgs/Twist
+prints
+geometry_msgs/Vector3 linear
+  float64 x
+  float64 y
+  float64 z
+geometry_msgs/Vector3 angular
+  float64 x
+  float64 y
+  float64 z
+
+
+rostopic pub -1 /turtle1/cmd_vel geometry_msgs/Twist -- '[2.0, 0.0, 0.0]' '[0.0, 0.0, 1.8]'
+publishes twist msg to cmd_vel of linear vel 2.0 and angular vel of 1.8
+-1 causes rostopic to only publish one message then exit
+-- tells the option parser that none of the following args is an option
+required in cases where you have a leading - ie negative nums
+'[2.0, 0.0, 0.0]' '[0.0, 0.0, 1.8]' is two vectors being linear then angular
+x=2.0 y=0.0 z=0.0 then x=0.0 y=0.0 z=1.8
+
+rostopic pub /turtle1/cmd_vel geometry_msgs/Twist -r 1 -- '[2.0, 0.0, 0.0]' '[0.0, 0.0, -1.8]'
+same as above but repeats using -r 1
+
+rostopic hz /turtle1/pose
+prints the average rate which is 60hz
+
+
+
+
+
