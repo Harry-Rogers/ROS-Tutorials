@@ -1,0 +1,26 @@
+Services are another way nodes can commmunicate with each other. Services
+allow nodes to send a request and recieve a response.
+
+rosservice list shows active services other params are available
+
+rosservice type /clear shows what type clear is (std_srvs/Empty)
+
+rosservice call /clear calls clear when running turtlesim it clears background
+so line drawn is deleted.
+
+rosservice call /spawn 2 2 0.2 "" will spawn second turtle
+
+rosparam can store and manipulate data on Param server. It can store
+int, lfoat, boolean, dict and lists. YAML markup language for syntax.
+
+rosparam list shows param names other params are on ROS site.
+
+rosparam set 
+rosparam get
+
+rosparam set /turtlesim/background_r 150
+changes background red to 150 so brighter
+clear after to see effect.
+
+rosparam get /turtlesim/background_r will print 150
+
