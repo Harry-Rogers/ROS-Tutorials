@@ -1,0 +1,23 @@
+rosrun rqt_console rqt_console
+rosrun rqt_logger_level rqt_logger_level
+
+Aboce will show the rqt logger and console, these both show messages from
+running applications such as turtlesim. When turtle hits the wall error
+message is shown in console. 
+
+Logger levels worst top going down
+Fatal
+Error
+Warn
+Info
+Debug
+
+Launch file launch to start 
+create 2 groups giving them a namespace each 
+creates two simulators without having name conflicts
+turtlesim2 will mimic turtlesim1
+
+roslaunch turtlemimic.lauch
+creates two sims of turtlesim and when rosopic pub info both do same thing
+rqt graph makes it v clear on whats going on
+publish info to sim1 and that then goes to sim2 as well single pub two going.
