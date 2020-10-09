@@ -1,0 +1,6 @@
+rosed roscpp Logger.msg
+edits the logger mesg file inside cpp package
+needs vim installed 
+:quit to exit
+
+can find any file in package with tab
