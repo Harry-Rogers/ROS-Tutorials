@@ -1,0 +1,16 @@
+Prerequisite for URDF Tutorial
+Run
+Roslaunch turtle_tf turtle_tf_demo.launch
+Creates Turtlesim with two turtles
+One driven and a follower.
+
+Running rosrun tf view_frames
+Shows listener and creates a frames.pdf.
+This PDF shows world, turtle1 and turtle2 in the rqt tree style.
+
+rosrun tf tf_echo turtle1 turtle2
+Shows what the turtles are doing by displaying the time, speed and translation
+of the turtlebots.
+
+rosrun rviz rviz -d `rospack find turtle_tf`/rviz/turtle_rviz.rviz
+Shows the rviz of the turtlebots, shows the XYZ of the turtlebots.
