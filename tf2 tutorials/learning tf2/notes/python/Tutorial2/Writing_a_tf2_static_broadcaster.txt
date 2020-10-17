@@ -1,0 +1,53 @@
+Create package that depends on tf, tf2, tf2_ros, roscpp, rospy and turtlesim
+catkin_create_pkg learning_tf2 tf2 tf2_ros roscpp rospy turtlesim
+
+mkdir ~/tf2/src/learning_tf2/src/nodes
+sudo nano static_turtle_tf2_broadcaster.py and sudo chmod +x to be exe
+
+code imports rospy, sys, tf, tf2_ros, geomtrymsgs.msg
+
+if name == main
+if sys.argv < 8
+print invalid num of params and the usage
+exit 0
+else
+ if argv[1] == "world"
+	print name cannot be world
+	exit 0
+create init node
+create broadcaster
+create StaticTransformBroadcaster 
+set time now to broadcaster.header.stamp
+set frame id to "world"
+set child name argv[1]
+set translation x, y, z to float(argv[2],[3],[4]) respectively.
+create rotations for argv[5],[6],[7] as floats called quat
+set roations x,y,z,w to quat[0],[1],[2],[3] respectively
+send info
+rospy spin()
+
+done
+
+call py code and check result using rostopic echo /tf_static
+shows 
+transforms: 
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 1600864347
+        nsecs: 994411945
+      frame_id: "world"
+    child_frame_id: "mystaticturtle"
+    transform: 
+      translation: 
+        x: 0.0
+        y: 0.0
+        z: 1.0
+      rotation: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+        w: 1.0
+---
+
