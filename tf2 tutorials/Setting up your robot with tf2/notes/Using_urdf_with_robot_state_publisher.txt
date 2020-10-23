@@ -1,0 +1,6 @@
+Model.xml is a model of R2D2 
+
+Launch file calls xml file and creates a robot state publisher node with pkg
+robot state publisher next another node state publisher is made with r2d2 pkg.
+
+Figure out how code works

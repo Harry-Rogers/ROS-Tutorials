@@ -1,0 +1,55 @@
+Basic bot needs to be defined, need to use centre point of bot then use
+centre points of attachments like laser scanner.
+Picture shows good example of a basic bot that has a scanner that has a 
+measurable distance from the centre of the bot. Ie laser is 20cm above and 
+10cm away from the centre of the bot.
+
+From this information a tree can be formed with parents and child for tf trees.
+The edges will have values on them to say for example that base_link is 10cm
+away from base_laser.
+
+Create a ROS broadcaster cpp file. 
+pass in the rotation transform, which is specified by a btQuaternion for any 
+rotation that needs to occur between the two coordinate frames. In this case, 
+we want to apply no rotation, so we send in a btQuaternion constructed from 
+pitch, roll, and yaw values equal to zero. Second, a btVector3 for any 
+translation that we'd like to apply. We do, however, want to apply a 
+translation, so we create a btVector3 corresponding to the laser's x offset of
+10cm and z offset of 20cm from the robot base. Third, we need to give the 
+transform being published a timestamp, we'll just stamp it with 
+ros::Time::now(). Fourth, we need to pass the name of the parent node of the 
+link we're creating, in this case "base_link." Fifth, we need to pass the name
+of the child node of the link we're creating, in this case "base_laser."
+
+Create a ROS listener cpp file.
+Transforms info from base_laser into base_link
+create a function that, given a TransformListener, takes a point in the 
+"base_laser" frame and transforms it to the "base_link" frame. This function 
+will serve as a callback for the ros::Timer created in the main() and will 
+fire every second.
+geometry_msgs::PointStamped. The "Stamped" on the end of the message name just
+means that it includes a header, allowing us to associate both a timestamp and
+a frame_id with the message. We'll set the stamp field of the laser_point 
+message to be ros::Time() which is a special time value that allows us to ask 
+the TransformListener for the latest available transform. As for the frame_id 
+field of the header, we'll set that to be "base_laser" because we're creating 
+a point in the "base_laser" frame. Finally, we'll set some data for the 
+point values of x: 1.0, y: 0.2, and z: 0.0.
+Now that we have the point in the "base_laser" frame we want to transform it 
+into the "base_link" frame. To do this, we'll use the TransformListener object
+and call transformPoint() with three arguments: the name of the frame we want 
+to transform the point to ("base_link" in our case), the point we're 
+transforming, and storage for the transformed point. So, after the call to 
+transformPoint(), base_point holds the same information as laser_point did 
+before only now in the "base_link" frame.
+Catch error if not working for whatever reason.
+print error message
+
+Add to CMakeLists.txt 
+add_executable(tf_broadcaster src/tf_broadcaster.cpp)
+add_executable(tf_listener src/tf_listener.cpp)
+target_link_libraries(tf_broadcaster ${catkin_LIBRARIES})
+target_link_libraries(tf_listener ${catkin_LIBRARIES})
+
+catkin_make then code should be executable
+

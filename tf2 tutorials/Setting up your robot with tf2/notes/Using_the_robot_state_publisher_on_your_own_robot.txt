@@ -1,0 +1,30 @@
+When you are working with a robot that has many relevant frames, it becomes 
+quite a task to publish them all to tf. The robot state publisher is a tool 
+that will do this job for you.
+
+Imagine large bot with multiple moving peices like arms.
+
+robot state publisher helps you to broadcast the state of your robot to the tf
+transform library. The robot state publisher internally has a kinematic model 
+of the robot; so given the joint positions of the robot, the robot state 
+publisher can compute and broadcast the 3D pose of each link in the robot.
+
+Easiest to run as a node, needs two things to run. URDF XML file on Param 
+server and a source that publishes joint positions as a 
+sensor_msgs/JointState.
+
+Once you have setup the XML robot description and a source for joint position 
+information, simply create a launch file like below.
+
+ <launch>
+   <!-- Load the urdf into the parameter server. -->
+   <param name="my_robot_description" textfile="$(find mypackage)/urdf/robotmodel.xml"/>
+    
+   <node pkg="robot_state_publisher" type="robot_state_publisher" name="rob_st_pub" >
+      <remap from="robot_description" to="my_robot_description" />
+      <remap from="joint_states" to="different_joint_states" />
+    </node>
+  </launch>
+
+
+
